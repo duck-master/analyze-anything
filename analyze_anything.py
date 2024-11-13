@@ -1,11 +1,21 @@
 """
-To analyze stuff
+Analyzes an arbitrary Python object.
+
+Functions:
+* invert_dict(some_dict): A helper function.
+* analyze_anything(something): Analyzes an arbitrary Python object. Returns a dictionary.
 """
 from pprint import pprint
 
 def invert_dict(some_dict):
     """
     Helper function for analyze_something
+
+    Args:
+    * some_dict (dict): The dictionary {keys: values} to invert.
+
+    Returns:
+    * dict: The data from some_dict in the form {values: [keys]}.
     """
     result = {}
     for k, v in some_dict.items():
@@ -17,7 +27,13 @@ def invert_dict(some_dict):
 
 def analyze_anything(something):
     """
-    Analyzes an arbitrary object of potentially unknown type and structure
+    Analyzes an arbitrary object of potentially unknown type and structure.
+
+    Args:
+    * something (any): An arbitrary Python object to analyze.
+
+    Returns:
+    * dict: A JSON-like object representing the result of the analysis.
     """
     return {
         "type": type(something).__name__,
@@ -31,4 +47,4 @@ def analyze_anything(something):
 
 if __name__ == "__main__":
     # to show this function off, let's use it to analyze itself!
-    pprint(analyze_something(analyze_something))
+    pprint(analyze_anything(analyze_anything))
