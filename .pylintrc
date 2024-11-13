@@ -1,0 +1,2 @@
+[MESSAGES CONTROL]
+disable=broad-exception-caught	# this is fundamental to analyze_anything!

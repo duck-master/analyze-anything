@@ -35,14 +35,22 @@ def analyze_anything(something):
     Returns:
     * dict: A JSON-like object representing the result of the analysis.
     """
+    # get all the properties:
+    properties = {}
+    for key in dir(something):
+        try:
+            properties[key] = type(getattr(something, key)).__name__
+        except Exception:   # getattr could fail for any number of reasons!
+            properties[key] = None
+
+    # invert the property dictionary
+    properties = invert_dict(properties)
+
     return {
         "type": type(something).__name__,
         "str": str(something)[:100],
         "repr": repr(something)[:100],
-        "dir": invert_dict({
-            k: type(getattr(something, k)).__name__
-            for k in dir(something)
-        })
+        "dir": properties
     }
 
 if __name__ == "__main__":
