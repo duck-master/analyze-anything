@@ -25,12 +25,15 @@ def invert_dict(some_dict):
             result[value] = [key]
     return result
 
-def analyze_anything(something):
+def analyze_anything(something, length_cutoff = 100):
     """
     Analyzes an arbitrary object of potentially unknown type and structure.
 
     Args:
     * something (any): An arbitrary Python object to analyze.
+    * length_cutoff (int): The cutoff for the descriptions of the object.
+    Useful for very large objects (e.g. JSON datasets, numpy arrays, etc).
+    Defaults to 100.
 
     Returns:
     * dict: A JSON-like object representing the result of the analysis.
@@ -48,8 +51,8 @@ def analyze_anything(something):
 
     return {
         "type": type(something).__name__,
-        "str": str(something)[:100],
-        "repr": repr(something)[:100],
+        "str": str(something)[:length_cutoff],
+        "repr": repr(something)[:length_cutoff],
         "dir": properties
     }
 
