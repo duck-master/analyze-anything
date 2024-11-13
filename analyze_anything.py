@@ -18,11 +18,11 @@ def invert_dict(some_dict):
     * dict: The data from some_dict in the form {values: [keys]}.
     """
     result = {}
-    for k, v in some_dict.items():
-        if v in result:
-            result[v].append(k)
+    for key, value in some_dict.items():
+        if value in result:
+            result[value].append(key)
         else:
-            result[v] = [k]
+            result[value] = [key]
     return result
 
 def analyze_anything(something):
